@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Title from './components/Title';
 
 function App() {
   let [showEvents, setShowEvents] = useState(true);
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <div className="App">
+      <Title />
       <button onClick={() => setShowEvents(!showEvents)}> {showEvents ? "Hide Events" : "Show Events"} </button>
 
       { showEvents && events.map( (e) => (
