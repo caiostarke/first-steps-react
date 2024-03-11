@@ -3,6 +3,20 @@ import './App.css';
 
 function App() {
   let [name, setName] = useState("Kaer");
+  let [events, setEvents] = useState([
+    {
+      id: 1,
+      title: "Someone's birhtday"
+    },
+    {
+      id: 2,
+      title: "Bowser's live stream"
+    },
+    {
+      id: 3,
+      title: "Race on moo moo farm"
+    }
+  ])
 
   const handeClick = () => {
     setName("Another thing but Kaer");
