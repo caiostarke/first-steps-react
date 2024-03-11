@@ -2,7 +2,6 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  let [name, setName] = useState("Kaer");
   let [events, setEvents] = useState([
     {
       id: 1,
@@ -18,20 +17,19 @@ function App() {
     }
   ])
 
-  const handeClick = () => {
-    setName("Another thing but Kaer");
-    console.log(name)
+  const handleDelete = (id) => {
+    setEvents((prevEvents) => {
+      return prevEvents.filter(e => e.id !== id)
+    })
   }
 
   return (
     <div className="App">
-      <h1 >Hello {name}</h1>
-      <button onClick={handeClick}> change name </button>
-
       { events.map( (e) => (
         <div key={e.id}>
           <small>{e.id}</small>
           <p>{e.title}</p>
+          <button onClick={() => handleDelete(e.id)}>Delete </button>
         </div>
       ))}
 
