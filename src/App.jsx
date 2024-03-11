@@ -27,6 +27,14 @@ function App() {
     <div className="App">
       <h1 >Hello {name}</h1>
       <button onClick={handeClick}> change name </button>
+
+      { events.map( (e) => (
+        <div key={e.id}>
+          <small>{e.id}</small>
+          <p>{e.title}</p>
+        </div>
+      ))}
+
     </div>
   );
 }
