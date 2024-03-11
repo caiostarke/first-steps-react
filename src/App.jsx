@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
+  let [showEvents, setShowEvents] = useState(true);
   let [events, setEvents] = useState([
     {
       id: 1,
@@ -25,7 +26,9 @@ function App() {
 
   return (
     <div className="App">
-      { events.map( (e) => (
+      <button onClick={() => setShowEvents(!showEvents)}> {showEvents ? "Hide Events" : "Show Events"} </button>
+
+      { showEvents && events.map( (e) => (
         <div key={e.id}>
           <small>{e.id}</small>
           <p>{e.title}</p>
