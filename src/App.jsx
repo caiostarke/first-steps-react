@@ -3,9 +3,11 @@ import React from 'react';
 import './App.css';
 import Title from './components/Title';
 import Modal from './components/Modal';
+import EventList from './components/EventList';
 
 function App() {
   let [showEvents, setShowEvents] = useState(true);
+  let [showModal, setShowModal] = useState(true);
   let [events, setEvents] = useState([
     {
       id: 1,
@@ -27,6 +29,10 @@ function App() {
     })
   }
 
+  const handleClose = () => {
+    setShowModal(false)
+  }
+
   const subtitle = "All events inside your land"
 
   return (
@@ -35,18 +41,13 @@ function App() {
 
       <button onClick={() => setShowEvents(!showEvents)}> {showEvents ? "Hide Events" : "Show Events"} </button>
 
-      { showEvents && events.map( (e) => (
-        <React.Fragment key={e.id}>
-          <small>{e.id}</small>
-          <p>{e.title}</p>
-          <button onClick={() => handleDelete(e.id)}>Delete </button>
-        </React.Fragment>
-      ))}
+      { showEvents && <EventList events={events} handleDelete={handleDelete} />}
 
-      <Modal> 
+      { showModal && <Modal handleClose={handleClose}> 
         <h2> 10% Off Cupon Code!</h2>
          <p>Use the Code KAER10 at the checkout.</p>
-      </Modal>
+      </Modal>}
+      
     </div>
   );
 }
