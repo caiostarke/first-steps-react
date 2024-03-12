@@ -5,6 +5,8 @@ import Title from './components/Title';
 import Modal from './components/Modal';
 
 function App() {
+  let [showModal, setShowModal] = useState(true)
+
   let [showEvents, setShowEvents] = useState(true);
   let [events, setEvents] = useState([
     {
@@ -27,6 +29,10 @@ function App() {
     })
   }
 
+  const handleClose = () => {
+      setShowModal(false);
+  }
+
   const subtitle = "All events inside your land"
 
   return (
@@ -43,11 +49,11 @@ function App() {
         </React.Fragment>
       ))}
 
-      <Modal> 
+    { showModal && <Modal handleClose={handleClose}> 
         <h2> 10% Off Cupon Code!</h2>
          <p>Use the Code KAER10 at the checkout.</p>
-      </Modal>
-    </div>
+      </Modal> }
+    </div> 
   );
 }
 
