@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import React from 'react';
 import './App.css';
 import Title from './components/Title';
+import Modal from './components/Modal';
 
 function App() {
   let [showEvents, setShowEvents] = useState(true);
@@ -25,19 +27,26 @@ function App() {
     })
   }
 
+  const subtitle = "All events inside your land"
+
   return (
     <div className="App">
-      <Title />
+      <Title title="Events" subtitle={subtitle} />
+
       <button onClick={() => setShowEvents(!showEvents)}> {showEvents ? "Hide Events" : "Show Events"} </button>
 
       { showEvents && events.map( (e) => (
-        <div key={e.id}>
+        <React.Fragment key={e.id}>
           <small>{e.id}</small>
           <p>{e.title}</p>
           <button onClick={() => handleDelete(e.id)}>Delete </button>
-        </div>
+        </React.Fragment>
       ))}
 
+      <Modal> 
+        <h2> 10% Off Cupon Code!</h2>
+         <p>Use the Code KAER10 at the checkout.</p>
+      </Modal>
     </div>
   );
 }
