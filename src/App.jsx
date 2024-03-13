@@ -45,10 +45,10 @@ function App() {
 
       { showModal && <Modal handleClose={handleClose}> 
         <h2> 10% Off Cupon Code!</h2>
-         <p>Use the Code KAER10 at the checkout.</p>
+         <p>Use the Code KAER10 at the checkout.</p> 
       </Modal>}
-      
-    </div>
+
+    </div> 
   );
 }
 
