@@ -1,0 +1,7 @@
+.card {
+    max-width: 20rem;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: wheat;
+}
