@@ -10,25 +10,20 @@ import NewEventForm from './components/NewEventForm';
 function App() {
   let [showEvents, setShowEvents] = useState(true);
   let [showModal, setShowModal] = useState(false);
-  let [events, setEvents] = useState([
-    {
-      id: 1,
-      title: "Someone's birhtday"
-    },
-    {
-      id: 2,
-      title: "Bowser's live stream"
-    },
-    {
-      id: 3,
-      title: "Race on moo moo farm"
-    }
-  ])
+  let [events, setEvents] = useState([])
 
   const handleDelete = (id) => {
     setEvents((prevEvents) => {
       return prevEvents.filter(e => e.id !== id)
     })
+  }
+
+  const newEvent = (event) => {
+    setEvents((prevEvents) => {
+      return [...prevEvents, event]
+    })
+
+    handleClose() 
   }
 
   const handleClose = () => {
@@ -45,8 +40,8 @@ function App() {
 
       { showEvents && <EventList events={events} handleDelete={handleDelete} />}
 
-      { showModal && <Modal handleClose={handleClose} isSalesModal={false}> 
-          <NewEventForm />
+      { showModal && <Modal handleClose={handleClose} > 
+          <NewEventForm newEvent={newEvent} />
       </Modal>}
 
       <div>
