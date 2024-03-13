@@ -4,10 +4,12 @@ import './App.css';
 import Title from './components/Title';
 import Modal from './components/Modal';
 import EventList from './components/EventList';
+import NewEventForm from './components/NewEventForm';
+
 
 function App() {
   let [showEvents, setShowEvents] = useState(true);
-  let [showModal, setShowModal] = useState(true);
+  let [showModal, setShowModal] = useState(false);
   let [events, setEvents] = useState([
     {
       id: 1,
@@ -44,9 +46,12 @@ function App() {
       { showEvents && <EventList events={events} handleDelete={handleDelete} />}
 
       { showModal && <Modal handleClose={handleClose} isSalesModal={false}> 
-        <h2> 10% Off Cupon Code!</h2>
-         <p>Use the Code KAER10 at the checkout.</p> 
+          <NewEventForm />
       </Modal>}
+
+      <div>
+        <button onClick={() => setShowModal(true)}>  Add new Event</button>        
+      </div>
 
     </div> 
   );
