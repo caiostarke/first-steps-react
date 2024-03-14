@@ -1,22 +1,26 @@
-import React, { useState } from 'react'
+import React, {  useRef } from 'react'
 import './NewEventForm.css'
 
 export default function NewEventForm({newEvent, closeModal}) {
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [date, setDate] = useState("");
+  
+  const title = useRef()
+  const date = useRef()
 
   const resetForm = () => {
-    setTitle("");
-    setDate("");
+    title.current.value = ""
+    date.current.value = ""
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log(title, date)
     if(title && date) {
       const event = {
         id: Math.floor(Math.random() * 10000),
-        title: title,
-        date: date
+        title: title.current.value,
+        date: date.current.value
       }
       newEvent(event)
       resetForm()
@@ -28,16 +32,14 @@ export default function NewEventForm({newEvent, closeModal}) {
       <label >
         <span>Event Title:</span>
         <input type="text" 
-        onChange={(event) => setTitle(event.target.value)}
-        value={title}
+        ref={title}
         />
       </label>
 
       <label >
         <span>Event Date:</span>
-        <input type="date" 
-        onChange={(event) => setDate(event.target.value)}
-        value={date}
+        <input type="date"
+        ref={date} 
         />
       </label>
       <button> Submit</button>
